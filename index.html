@@ -20,20 +20,18 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(22, 20, 24);
-  color: #eee;
   user-select: none;
+  color: white;
+  background-color: #282c34;
 }
-
 
 .card{
   user-select:none;
   max-width: 300px;
   margin : 1vh;
-  border: 1px solid #ffffff22;
+  border: 0.1vh solid;
   background-color: #282c34;
   background: linear-gradient(0deg, rgba(40,44,52,1) 0%, rgba(17,0,32,.5) 100%);
-  box-shadow: 0 7px 20px 5px #00000088;
   border-radius: 2vh;
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
@@ -47,7 +45,6 @@ body {
   }
   ins{
     text-decoration: none;
-    color: red;
     align-self: flex-end;
     transition: 0.5s all;
   }
@@ -71,7 +68,6 @@ body {
         display: flex;
         flex-direction: column;
         align-items: left;
-        color: #ee83e5;
         font-weight: 300;
         width: 70%;
       }
@@ -79,17 +75,18 @@ body {
         display: flex;
         flex-direction: column;
         align-items: right;
-        color: #a89ec9;
         margin-right: -3vh;
       }
     }
   }
 }
 .card:hover{
-    background-color:darkslateblue
+    background-color:darkslateblue;
+    box-shadow: 0 7px 20px 5px #413f3f88;
 }
 ins:hover{
-    font-size: larger;
+    font-size:3vh;
+    color: red;
 }
 
 </style>
@@ -98,10 +95,10 @@ ins:hover{
     <header></header>
     <nav>Buscar Pokemon:</nav>
     <main>
-        <div class="card">
+        <div class="card"  style="border-color: green;">
             <div class='contenido'>
             <ins>╳</ins>
-            <img class='imagen' src="1.png" alt="CARD" />
+            <img class='imagen' src="1.png" alt="CARD"/>
             <h2>Bulbasur #1</h2>
             <div class='info'>
                 <div class="tipo">
@@ -123,10 +120,10 @@ ins:hover{
             <hr/>
             </div>
         </div>
-        <div class="card">
+        <div class="card" style="border-color: green;">
             <div class='contenido'>
             <ins>╳</ins>
-            <img class='imagen' src="img/3.png" alt="CARD" />
+            <img class='imagen' src="img/3.png" alt="CARD"/>
             <h2>Bulbasur #1</h2>
             <div class='info'>
                 <div class="tipo">
