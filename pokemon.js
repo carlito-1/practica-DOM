@@ -8514,3 +8514,4 @@ const pokemon = [
       es_mitico: true,
     },
   ];
+ 
