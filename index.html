@@ -9,89 +9,91 @@
 </head>
 
 <style>
-main{
-    display: flex;
-    flex-wrap: nowrap;
-}
+/* Estilos Generales */
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* Contenedor Principal */
+main {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+/* Estilos de la Tarjeta */
+.card {
   user-select: none;
-  color: white;
-  background-color: #282c34;
-}
-
-.card{
-  user-select:none;
-  max-width: 300px;
-  margin : 1vh;
-  border: 1vh solid;
-  background-color: #282c34;
-  background: linear-gradient(0deg, rgba(40,44,52,1) 0%, rgba(17,0,32,.5) 100%);
-  border-radius: 2vh;
-  backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
-  border-color: #F5F5DC;
-  overflow: hidden;
+  margin: 10px;
+  border: 8px solid transparent;
+  background-image: url("fondoCard.png");
+  background-size: cover;
+  border-image: url("bordeCard.avif") 30 stretch;
   transition: 0.5s all;
-  hr{
-    width: 100%;
-    border: none;
-    border-bottom: 1px solid #88888855;
-    margin-top: 0;
-  }
-  ins{
-    text-decoration: none;
-    align-self: flex-end;
-    transition: 0.5s all;
-  }
-  .contenido{
-    display: flex;
-    flex-direction: column;
-    width: auto;
-    height: auto;
-    padding: 2vh; 
-    .imagen{
-      display: flex;
-      border: 0.2vh black;
-      border-radius: 3vh;
-      border-style: solid;
-      max-width: 100%;
-      height: 180px;
-    }
-    .info{
-      display: flex;
-      justify-content: space-between;
-      align-items: left;
-      .tipo{
-        display: flex;
-        flex-direction: column;
-        align-items: left;
-        font-weight: 300;
-        width: 70%;
-      }
-      .estadisticas{
-        display: flex;
-        flex-direction: column;
-        align-items: right;
-        margin-right: -3vh;
-      }
-    }
-  }
-}
-.card:hover{
-    background-color:darkslateblue;
-    box-shadow: 0 7px 20px 5px #413f3f88;
-}
-ins:hover{
-    font-size:3vh;
-    color: red;
 }
 
+.card:hover {
+  box-shadow: 0 7px 20px 5px rgba(65, 63, 63, 0.53);
+}
+
+/* Línea Horizontal */
+.card hr {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(136, 136, 136, 0.33);
+  margin-top: 0;
+}
+
+/* Iconos */
+.icon {
+  text-decoration: none;
+  align-self: flex-end;
+  transition: 0.5s all;
+}
+
+.icon:hover {
+  font-size: 20px;
+  color: red;
+}
+
+/* Contenido de la Tarjeta */
+.card .contenido {
+  display: flex;
+  flex-direction: column;
+  padding: 5px; 
+}
+
+.card .contenido .imagen {
+  display: flex;
+  background-color: white;
+  max-width: 100%;
+  max-height: 150px;
+}
+
+/* Información */
+.card .contenido .info {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 350;
+}
+
+.card .contenido .info .tipo {
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
+}
+
+.card .contenido .info .estadisticas {
+  display: flex;
+  flex-direction: column;
+}
 </style>
   
 <body>
@@ -100,12 +102,13 @@ ins:hover{
     <main>
         <div class="card">
             <div class='contenido'>
-            <ins>╳</ins>
+            <div class='icon'>╳</div class='icon'>
             <img class='imagen' src="img/1.png"/>
             <h2>Bulbasur #1</h2>
             <div class='info'>
                 <div class="tipo">
-                    <div><b>Tipo:</b> planta, veneno</div>
+                    <b>Tipo:</b>
+                    <div>planta, veneno</div>
                 </div>
                     <div class="estadisticas">
                     <div><b>Hp:</b> 45</div>
@@ -121,12 +124,13 @@ ins:hover{
         </div>
         <div class="card">
             <div class='contenido'>
-            <ins>╳</ins>
+            <div class='icon'>╳</div class='icon'>
             <img class='imagen' src="img/3.png"/>
             <h2>Bulbasur #1</h2>
             <div class='info'>
                 <div class="tipo">
-                    <div><b>Tipo:</b> planta, veneno</div>
+                    <div><b>Tipo:</b></div>
+                    <div>planta, veneno</div>
                 </div>
                     <div class="estadisticas">
                     <div><b>Hp:</b> 45</div>
