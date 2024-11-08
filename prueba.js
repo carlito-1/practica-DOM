@@ -1,85 +1,85 @@
 let body = document.getElementsByTagName('main')[0];
-for(let i in pokemon){
-    let divcard = document.createElement('div');
-    divcard.setAttribute('class', 'card');
-    let divcont = document.createElement('div');
-    divcont.setAttribute('class', 'contenido');
+
+for (let i in pokemon) {
+    // Crear tarjeta principal
+    let divCard = document.createElement('div');
+    divCard.setAttribute('class', 'card');
+
+    // Contenedor de contenido
+    let divCont = document.createElement('div');
+    divCont.setAttribute('class', 'contenido');
+
+    // Icono de cierre
     let icon = document.createElement('div');
-    icon.setAttribute('class','icon')
+    icon.setAttribute('class', 'icon');
     icon.textContent = '╳';
+
+    // Imagen del Pokémon
     let img = document.createElement('img');
     img.setAttribute('class', 'imagen');
-    img.setAttribute('src','img/'+ pokemon[i].id+'.png');
+    img.setAttribute('src', 'img/' + pokemon[i].id + '.png');
+
+    // Título con nombre e id
     let h2 = document.createElement('h2');
-    h2.textContent = pokemon[i]["nombre"]+'#'+pokemon[i].id;
-    let divinfo = document.createElement('div');
-    divinfo.setAttribute('class', 'info');
-    let divtipo = document.createElement('div');
-    divtipo.setAttribute('class', 'tipo');
-    let divtipo1 = document.createElement('div');
-    let b1 = document.createElement('b');
-    b1.textContent = "Tipo : ";
-    divtipo.appendChild(b1);
-    for(let j in pokemon[i].tipos){
-        divtipo1.textContent += pokemon[i]["tipos"][j]+',';  
+    h2.textContent = pokemon[i]["nombre"] + '#' + pokemon[i].id;
+
+    // Información del tipo
+    let divInfo = document.createElement('div');
+    divInfo.setAttribute('class', 'info');
+
+    let divTipo = document.createElement('div');
+    divTipo.setAttribute('class', 'tipo');
+
+    let tipo1 = document.createElement('b');
+    tipo1.textContent = "Tipo : ";
+    divTipo.appendChild(tipo1);
+
+    let divTipo1 = document.createElement('div');
+    for (let j in pokemon[i].tipos) {
+        if(pokemon[i].tipos.length<j+2){
+            divTipo1.textContent += pokemon[i]["tipos"][j];
+        }else{
+            divTipo1.textContent += pokemon[i]["tipos"][j] + ', ';
+        }
     }
 
+    // Estadísticas
     let divEstadisticas = document.createElement('div');
-    divEstadisticas.setAttribute('class','estadisticas');
+    divEstadisticas.setAttribute('class', 'estadisticas');
 
-    let b2 =document.createElement('b');
-    b2.textContent = "HP: ";
-    let divEstadisticas1 =document.createElement('div');
-    divEstadisticas1.textContent = pokemon[i].estadisticas_base["hp"];
-    divEstadisticas.appendChild(b2);
-    divEstadisticas.appendChild(divEstadisticas1);
+    let stats = [
+        { estadistica: "HP: ", numero: pokemon[i].estadisticas_base["hp"] },
+        { estadistica: "Ataque: ", numero: pokemon[i].estadisticas_base["ataque"] },
+        { estadistica: "Defensa: ", numero: pokemon[i].estadisticas_base["defensa"] },
+        { estadistica: "Ataque Especial: ", numero: pokemon[i].estadisticas_base["ataque_especial"] },
+        { estadistica: "Defensa Especial: ", numero: pokemon[i].estadisticas_base["defensa_especial"] },
+        { estadistica: "Velocidad: ", numero: pokemon[i].estadisticas_base["velocidad"] }
+    ];
     
-    let b3 =document.createElement('b');
-    b3.textContent = "Ataque: ";
-    let divEstadisticas2 =document.createElement('div');
-    divEstadisticas2.textContent = pokemon[i].estadisticas_base["ataque"];
-    divEstadisticas.appendChild(b3);
-    divEstadisticas.appendChild(divEstadisticas2);
-    
-    let b4 =document.createElement('b');
-    b4.textContent = "Defensa: ";
-    let divEstadisticas3 =document.createElement('div');
-    divEstadisticas3.textContent = pokemon[i].estadisticas_base["defensa"];
-    divEstadisticas.appendChild(b4);
-    divEstadisticas.appendChild(divEstadisticas3);
-    
-    let b5 =document.createElement('b');
-    b5.textContent = "Ataque Especial: ";
-    let divEstadisticas4 =document.createElement('div');
-    divEstadisticas4.textContent = pokemon[i].estadisticas_base["ataque_especial"];
-    divEstadisticas.appendChild(b5);
-    divEstadisticas.appendChild(divEstadisticas4);
-    
-    let b6 =document.createElement('b');
-    b6.textContent = "Defensa Especial: ";
-    let divEstadisticas5 =document.createElement('div'); 
-    divEstadisticas5.textContent = pokemon[i].estadisticas_base["defensa_especial"];
-    divEstadisticas.appendChild(b6);
-    divEstadisticas.appendChild(divEstadisticas5);
-    
-    let b7 =document.createElement('b');
-    b7.textContent = "Velocidad: ";
-    let divEstadisticas6 =document.createElement('div');
-    divEstadisticas6.textContent = pokemon[i].estadisticas_base["velocidad"];
-    divEstadisticas.appendChild(b7);
-    divEstadisticas.appendChild(divEstadisticas6);
-    
- 
-    let hr = document.createElement('hr');
+    stats.forEach(stat => {
+        // Crear un contenedor para cada estadística
+        let statContenedor = document.createElement('div');
+        
+        // Crear el b para la etiqueta
+        let stat1 = document.createElement('b');
+        stat1.textContent = stat.estadistica;
+        
+        statContenedor.appendChild(stat1);
+        statContenedor.append(stat.numero);
+        divEstadisticas.appendChild(statContenedor);
+    });
 
-    divcard.appendChild(divcont)
-    divcont.appendChild(icon);
-    divcont.appendChild(img);
-    divcont.appendChild(h2);
-    divcont.appendChild(divinfo);
-    divinfo.appendChild(divtipo);
-    divtipo.appendChild(divtipo1);
-    divinfo.appendChild(divEstadisticas);
-    divcont.appendChild(hr);
-    body.appendChild(divcard);
+    // Estructura final de la tarjeta
+    divInfo.appendChild(divTipo);
+    divTipo.appendChild(divTipo1);
+    divInfo.appendChild(divEstadisticas);
+
+    divCont.appendChild(icon);
+    divCont.appendChild(img);
+    divCont.appendChild(h2);
+    divCont.appendChild(document.createElement('hr'));
+    divCont.appendChild(divInfo);
+    divCont.appendChild(document.createElement('hr'));
+    divCard.appendChild(divCont);
+    body.appendChild(divCard);
 }
