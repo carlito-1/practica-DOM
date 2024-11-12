@@ -85,19 +85,15 @@ for (let i in pokemon) {
     body.appendChild(divCard);
 
     let input = document.getElementById("input");
-input.addEventListener('keyup', function(){
-    buscar();
-})
- 
-function buscar(){
-    console.log(input.value);
-        if(pokemon[i]["nombre"].includes(input.value)){
+    input.addEventListener('keyup', buscar);
+    
+    function buscar(){
+        if(pokemon[i]["nombre"].toLowerCase().includes(input.value.toLowerCase())){
             divCard.classList.remove('ocultar');
         }else{
             divCard.classList.add('ocultar');
         }
-    
-}
+    }
 }
 
 
