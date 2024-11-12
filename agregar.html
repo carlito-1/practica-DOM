@@ -5,13 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar pokemon</title>
 </head>
+<style>
+    .input {
+        background-color: #f2f2f2;
+        border: none;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        width: 280px;
+    }       
+    .input:hover,
+    .input:focus{
+        border: 1px solid;
+        border-color: #66afe9;
+    }
+</style>
 <body>
     <fieldset>
         <legend>Nuevo Pokemon</legend>
         <form action="datos.html" method="get">
-            <label>Nombre: <input type="text" name="nombre" required><br></label>
+            <label><input type="text" name="nombre" class="input" placeholder="nombres" required><br></label>
             <label>Tipo uno: 
-                <select name="tipo1" id="">
+                <select name="tipo1" id="" class="input">
                     <option value="Planta">Planta</option>
                     <option value="Veneno">Veneno</option>
                     <option value="Fuego">Fuego</option>
@@ -31,7 +45,7 @@
                 </select>
             </label>
             <label>Tipo dos: 
-                <select name="tipo2" id="">
+                <select name="tipo2" id="" class="input">
                     <option value="None">None</option>
                     <option value="Planta">Planta</option>
                     <option value="Veneno">Veneno</option>
