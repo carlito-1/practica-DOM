@@ -12,6 +12,7 @@ for (let i in pokemon) {
     // Icono de cierre
     let icon = document.createElement('div');
     icon.setAttribute('class', 'icon');
+    icon.setAttribute('id', pokemon[i]["id"]);
     icon.textContent = '╳';
 
     // Imagen del Pokémon
@@ -82,4 +83,22 @@ for (let i in pokemon) {
     divCont.appendChild(document.createElement('hr'));
     divCard.appendChild(divCont);
     body.appendChild(divCard);
+
+    let input = document.getElementById("input");
+input.addEventListener('keyup', function(){
+    buscar();
+})
+ 
+function buscar(){
+    console.log(input.value);
+        if(pokemon[i]["nombre"].includes(input.value)){
+            divCard.classList.remove('ocultar');
+        }else{
+            divCard.classList.add('ocultar');
+        }
+    
 }
+}
+
+
+
