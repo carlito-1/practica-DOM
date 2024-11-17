@@ -1,98 +1,121 @@
 let body = document.getElementsByTagName('main')[0];
-
-for (let i in pokemon) {
-    // Crear tarjeta principal
-    let divCard = document.createElement('div');
-    divCard.setAttribute('class', 'card');
-
-    // Contenedor de contenido
-    let divCont = document.createElement('div');
-    divCont.setAttribute('class', 'contenido');
-
-    // Icono de cierre
-    let icon = document.createElement('div');
-    icon.setAttribute('class', 'icon');
-    icon.setAttribute('id', pokemon[i]["id"]);
-    icon.textContent = '╳';
-
-    // Imagen del Pokémon
-    let img = document.createElement('img');
-    img.setAttribute('class', 'imagen');
-    img.setAttribute('src', 'img/' + pokemon[i].id + '.png');
-
-    // Título con nombre e id
-    let h2 = document.createElement('h2');
-    h2.textContent = pokemon[i]["nombre"] + '#' + pokemon[i].id;
-
-    // Información del tipo
-    let divInfo = document.createElement('div');
-    divInfo.setAttribute('class', 'info');
-
-    let divTipo = document.createElement('div');
-    divTipo.setAttribute('class', 'tipo');
-
-    let tipo1 = document.createElement('b');
-    tipo1.textContent = "Tipo : ";
-    divTipo.appendChild(tipo1);
-
-    let divTipo1 = document.createElement('div');
-    for (let j in pokemon[i].tipos) {
-        if(pokemon[i].tipos.length<j+2){
-            divTipo1.textContent += pokemon[i]["tipos"][j];
-        }else{
-            divTipo1.textContent += pokemon[i]["tipos"][j] + ', ';
-        }
-    }
-
-    // Estadísticas
-    let divEstadisticas = document.createElement('div');
-    divEstadisticas.setAttribute('class', 'estadisticas');
-
-    let stats = [
-        { estadistica: "HP: ", numero: pokemon[i].estadisticas_base["hp"] },
-        { estadistica: "Ataque: ", numero: pokemon[i].estadisticas_base["ataque"] },
-        { estadistica: "Defensa: ", numero: pokemon[i].estadisticas_base["defensa"] },
-        { estadistica: "Ataque Especial: ", numero: pokemon[i].estadisticas_base["ataque_especial"] },
-        { estadistica: "Defensa Especial: ", numero: pokemon[i].estadisticas_base["defensa_especial"] },
-        { estadistica: "Velocidad: ", numero: pokemon[i].estadisticas_base["velocidad"] }
-    ];
+let pokemonPlus = [];
+if(localStorage.getItem('pokemonAnadidos')){
+    pokemonPlus = JSON.parse(localStorage.getItem('pokemonAnadidos'));
+}
+let pokemonTodos = [];
+pokemonTodos.push(pokemon);
+pokemonTodos.push(pokemonPlus);
+for (let j in pokemonTodos) {
+    for(let i in pokemonTodos[j]){
+        console.log(pokemonTodos[j][i]['id']);
+        // Crear tarjeta principal
+        let divCard = document.createElement('div');
+        divCard.setAttribute('class', 'card');
     
-    stats.forEach(stat => {
-        // Crear un contenedor para cada estadística
-        let statContenedor = document.createElement('div');
+        // Contenedor de contenido
+        let divCont = document.createElement('div');
+        divCont.setAttribute('class', 'contenido');
+    
+        // Icono de cierre
+        let icon = document.createElement('div');
+        icon.setAttribute('class', 'icon');
+        icon.setAttribute('id', pokemonTodos[j][i]["id"]);
+        icon.textContent = '╳';
+    
+        // Imagen del Pokémon´
+        let img = '';
+        if('img/' + pokemonTodos[j][i].id + '.png'){
+            img = document.createElement('img');
+            img.setAttribute('class', 'imagen');
+            img.setAttribute('src', 'img/' + pokemonTodos[j][i].id + '.png');
+        }
+    
+    
+        // Título con nombre e id
+        let h2 = document.createElement('h2');
+        h2.textContent = pokemonTodos[j][i]["nombre"] + '#' + pokemonTodos[j][i].id;
+    
+        // Información del tipo
+        let divInfo = document.createElement('div');
+        divInfo.setAttribute('class', 'info');
+    
+        let divTipo = document.createElement('div');
+        divTipo.setAttribute('class', 'tipo');
+    
+        let tipo1 = document.createElement('b');
+        tipo1.textContent = "Tipo : ";
+        divTipo.appendChild(tipo1);
+    
+        let divTipo1 = document.createElement('div');
+        for (let k in pokemonTodos[j][i].tipos) {
+            if(pokemonTodos[j][i].tipos.length<j+2){
+                divTipo1.textContent += pokemonTodos[j][i]["tipos"][k];
+            }else{
+                divTipo1.textContent += pokemonTodos[j][i]["tipos"][k] + ', ';
+            }
+        }
+    
+        // Estadísticas
+        let divEstadisticas=''
+        if(pokemonTodos[j][i].estadisticas_base){
+            divEstadisticas = document.createElement('div');
+            divEstadisticas.setAttribute('class', 'estadisticas');
         
-        // Crear el b para la etiqueta
-        let stat1 = document.createElement('b');
-        stat1.textContent = stat.estadistica;
-        
-        statContenedor.appendChild(stat1);
-        statContenedor.append(stat.numero);
-        divEstadisticas.appendChild(statContenedor);
-    });
-
-    // Estructura final de la tarjeta
-    divInfo.appendChild(divTipo);
-    divTipo.appendChild(divTipo1);
-    divInfo.appendChild(divEstadisticas);
-
-    divCont.appendChild(icon);
-    divCont.appendChild(img);
-    divCont.appendChild(h2);
-    divCont.appendChild(document.createElement('hr'));
-    divCont.appendChild(divInfo);
-    divCont.appendChild(document.createElement('hr'));
-    divCard.appendChild(divCont);
-    body.appendChild(divCard);
-
-    let input = document.getElementById("input");
-    input.addEventListener('keyup', buscar);
-    function buscar(){
-        if(pokemon[i]["nombre"].toLowerCase().includes(input.value.toLowerCase())){
-            divCard.classList.remove('ocultar');
-        }else{
-            divCard.classList.add('ocultar');
+            let stats = [
+                { estadistica: "HP: ", numero: pokemonTodos[j][i].estadisticas_base["hp"] },
+                { estadistica: "Ataque: ", numero: pokemonTodos[j][i].estadisticas_base["ataque"] },
+                { estadistica: "Defensa: ", numero: pokemonTodos[j][i].estadisticas_base["defensa"] },
+                { estadistica: "Ataque Especial: ", numero: pokemonTodos[j][i].estadisticas_base["ataque_especial"] },
+                { estadistica: "Defensa Especial: ", numero: pokemonTodos[j][i].estadisticas_base["defensa_especial"] },
+                { estadistica: "Velocidad: ", numero: pokemonTodos[j][i].estadisticas_base["velocidad"] }
+            ];
+            
+            stats.forEach(stat => {
+                // Crear un contenedor para cada estadística
+                let statContenedor = document.createElement('div');
+                
+                // Crear el b para la etiqueta
+                let stat1 = document.createElement('b');
+                stat1.textContent = stat.estadistica;
+                
+                statContenedor.appendChild(stat1);
+                statContenedor.append(stat.numero);
+                divEstadisticas.appendChild(statContenedor);
+            });
+        }
+    
+    
+        // Estructura final de la tarjeta
+        divInfo.appendChild(divTipo);
+        divTipo.appendChild(divTipo1);
+        if(divEstadisticas){
+            divInfo.appendChild(divEstadisticas);
+        }
+    
+        divCont.appendChild(icon);
+        if(img){
+            divCont.appendChild(img);
+        }
+    
+        divCont.appendChild(h2);
+        divCont.appendChild(document.createElement('hr'));
+        divCont.appendChild(divInfo);
+        divCont.appendChild(document.createElement('hr'));
+        divCard.appendChild(divCont);
+        body.appendChild(divCard);
+    
+        let input = document.getElementById("input");
+        input.addEventListener('keyup', buscar);
+        function buscar(){
+            if(pokemonTodos[j][i]["nombre"].toLowerCase().includes(input.value.toLowerCase())){
+                divCard.classList.remove('ocultar');
+            }else{
+                divCard.classList.add('ocultar');
+            }
         }
     }
+
 }
 
 
