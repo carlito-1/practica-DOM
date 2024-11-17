@@ -86,7 +86,6 @@ for (let i in pokemon) {
 
     let input = document.getElementById("input");
     input.addEventListener('keyup', buscar);
-    
     function buscar(){
         if(pokemon[i]["nombre"].toLowerCase().includes(input.value.toLowerCase())){
             divCard.classList.remove('ocultar');
