@@ -48,7 +48,7 @@ for (let j in pokemonTodos) {
     
         let divTipo1 = document.createElement('div');
         for (let k in pokemonTodos[j][i].tipos) {
-            if(pokemonTodos[j][i].tipos.length<j+2){
+            if(pokemonTodos[j][i].tipos.length<k+2){
                 divTipo1.textContent += pokemonTodos[j][i]["tipos"][k];
             }else{
                 divTipo1.textContent += pokemonTodos[j][i]["tipos"][k] + ', ';

@@ -27,7 +27,7 @@ let tipo1 = pokemonInfos[1].split('=')[1];
 let tipo2 = pokemonInfos[2].split('=')[1];
 let tipos = [];
 tipos.push(tipo1);
-if(tipo2=='None'){
+if(tipo2=='none'){
 }else{
     tipos.push(tipo2); 
 }
