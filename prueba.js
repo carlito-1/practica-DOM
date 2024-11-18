@@ -17,21 +17,20 @@ for (let j in pokemonTodos) {
         let divCont = document.createElement('div');
         divCont.setAttribute('class', 'contenido');
     
-        // Icono de cierre
+        // Icono de para eliminar
         let icon = document.createElement('div');
         icon.setAttribute('class', 'icon');
         icon.setAttribute('id', pokemonTodos[j][i]["id"]);
         icon.textContent = '╳';
     
-        // Imagen del Pokémon´
-        let img = '';
-        if('img/' + pokemonTodos[j][i].id + '.png'){
-            img = document.createElement('img');
-            img.setAttribute('class', 'imagen');
-            img.setAttribute('src', 'img/' + pokemonTodos[j][i].id + '.png');
-        }
-    
-    
+        // Imagen del Pokemon
+        let img = document.createElement('img');
+        img.setAttribute('class', 'imagen');
+        img.setAttribute('src', 'img/' + pokemonTodos[j][i].id + '.png');
+        img.onerror = function () {
+            this.setAttribute('src', 'img/who_pokemon.webp');
+        };
+
         // Título con nombre e id
         let h2 = document.createElement('h2');
         h2.textContent = pokemonTodos[j][i]["nombre"] + '#' + pokemonTodos[j][i].id;
@@ -94,9 +93,9 @@ for (let j in pokemonTodos) {
         }
     
         divCont.appendChild(icon);
-        if(img){
-            divCont.appendChild(img);
-        }
+
+        divCont.appendChild(img);
+
     
         divCont.appendChild(h2);
         divCont.appendChild(document.createElement('hr'));
