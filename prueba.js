@@ -1,3 +1,4 @@
+
 let body = document.getElementsByTagName('main')[0];
 let pokemonPlus = [];
 if(localStorage.getItem('pokemonAnadidos')){
@@ -8,7 +9,6 @@ pokemonTodos.push(pokemon);
 pokemonTodos.push(pokemonPlus);
 for (let j in pokemonTodos) {
     for(let i in pokemonTodos[j]){
-        console.log(pokemonTodos[j][i]['id']);
         // Crear tarjeta principal
         let divCard = document.createElement('div');
         divCard.setAttribute('class', 'card');
@@ -22,7 +22,9 @@ for (let j in pokemonTodos) {
         icon.setAttribute('class', 'icon');
         icon.setAttribute('id', pokemonTodos[j][i]["id"]);
         icon.textContent = '╳';
-    
+        icon.addEventListener('click',function(){
+            divCard.classList.add('ocultar2');
+        });
         // Imagen del Pokemon
         let img = document.createElement('img');
         img.setAttribute('class', 'imagen');
@@ -60,7 +62,6 @@ for (let j in pokemonTodos) {
         if(pokemonTodos[j][i].estadisticas_base){
             divEstadisticas = document.createElement('div');
             divEstadisticas.setAttribute('class', 'estadisticas');
-        
             let stats = [
                 { estadistica: "HP: ", numero: pokemonTodos[j][i].estadisticas_base["hp"] },
                 { estadistica: "Ataque: ", numero: pokemonTodos[j][i].estadisticas_base["ataque"] },
@@ -69,7 +70,6 @@ for (let j in pokemonTodos) {
                 { estadistica: "Defensa Especial: ", numero: pokemonTodos[j][i].estadisticas_base["defensa_especial"] },
                 { estadistica: "Velocidad: ", numero: pokemonTodos[j][i].estadisticas_base["velocidad"] }
             ];
-            
             stats.forEach(stat => {
                 // Crear un contenedor para cada estadística
                 let statContenedor = document.createElement('div');
@@ -91,12 +91,8 @@ for (let j in pokemonTodos) {
         if(divEstadisticas){
             divInfo.appendChild(divEstadisticas);
         }
-    
         divCont.appendChild(icon);
-
-        divCont.appendChild(img);
-
-    
+        divCont.appendChild(img);    
         divCont.appendChild(h2);
         divCont.appendChild(document.createElement('hr'));
         divCont.appendChild(divInfo);
@@ -113,6 +109,7 @@ for (let j in pokemonTodos) {
                 divCard.classList.add('ocultar');
             }
         }
+        
     }
 
 }

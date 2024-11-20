@@ -100,15 +100,90 @@ main {
   display: flex;
   flex-direction: column;
 }
+/*Ocultar cartas*/
 .ocultar{
   display: none;
 }
+.ocultar2{
+  display: none;
+}
+.input{
+  box-shadow: inset #abacaf 0 0 0 2px;
+  border: 0;
+  background: rgba(0, 0, 0, 0);
+  appearance: none;
+  width: 20%;
+  position: relative;
+  border-radius: 3px;
+  padding: 9px 12px;
+  line-height: 1.4;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-weight: 400;
+  height: 40px;
+  transition: all .2s ease;
+  :focus{
+    background: #fff;
+    outline: 0;
+    box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 3px;
+  }             
+}
+.input:hover{
+  box-shadow: 0 0 0 0 #fff inset, #1de9b6 0 0 0 2px;
+}
+
+/* boton de enviar */
+.boton {
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: .375em;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #363636;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: BlinkMacSystemFont,-apple-system,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 1rem;
+  height: 2.5em;
+  justify-content: center;
+  line-height: 1.5;
+  padding: calc(.5em - 1px) 1em;
+  position: relative;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.boton:active {
+  border-color: #4a4a4a;
+  outline: 0;
+}
+
+.boton:focus {
+  border-color: #485fc7;
+  outline: 0;
+}
+
+.boton:hover {
+  border-color: #161616;
+  background-color: #c0c0c0;
+}
+
+.boton:focus:not(:active) {
+  box-shadow: rgba(155, 167, 222, 0.25) 0 0 0 .125em;
+}
+
 </style>
   
 <body>
     <header></header>
-    <nav><h2>Buscar Pokemon: <form><input id="input" type="text" name="buscar"></form></h2></nav>
-    <a href="agregar.html"><input type="submit" value="Crear Nuevo Pokemon"></a>
+    <nav><h2>Buscar Pokemon: <form><input id="input" type="text" name="buscar" class="input"></form></h2></nav>
+    <a href="agregar.html"><input type="submit" value="Crear Nuevo Pokemon" class="boton"></a>
     <main>
     </main>
     <script src="pokemon.js"></script>
